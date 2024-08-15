@@ -1,2 +1,8 @@
-# github-helper
-A symple github checker to check who is in your following list but not in your follower list.
+# Account Helpers
+
+A combination of helpers that used to check for your followings who are not in your followers list.
+
+# Available Helpers
+
+- Github
+- Instagram
