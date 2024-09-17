@@ -28,6 +28,15 @@ def fetch_users(url):
             break
     return users
 
+def unfollow_user(username):
+    unfollow_url = f"https://api.github.com/user/following/{username}"
+    response = requests.delete(unfollow_url, headers=headers)
+    
+    if response.status_code == 204:
+        print(f"Successfully unfollowed {username}")
+    else:
+        print(f"Failed to unfollow {username}: {response.status_code}, {response.text}")
+
 def compare_followers_following():
     followers_data = fetch_users('https://api.github.com/user/followers')
     following_data = fetch_users('https://api.github.com/user/following')
@@ -40,6 +49,11 @@ def compare_followers_following():
     print("Users you are following who do not follow you back:")
     for user in not_following_back:
         print(user)
+    
+    print("---------------------------------------------------")
+    print("Start unfollowing users -->")
+    for user in not_following_back:
+        unfollow_user(user)
 
 if __name__ == '__main__':
     compare_followers_following()
